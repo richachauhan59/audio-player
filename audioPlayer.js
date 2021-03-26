@@ -1,84 +1,30 @@
+var ctx = document.createElement('canvas').getContext('2d');
+            var linGrad = ctx.createLinearGradient(0, 64, 0, 200);
+            linGrad.addColorStop(0.5, 'rgba(218, 223, 225, 1)');
 
-  var currentFile = "";
+            var wavesurfer = WaveSurfer.create({
+                container: '#waveform',
+                waveColor: linGrad,
+                backend: 'MediaElement',
+                mediaType: 'audio',
+                progressColor: 'rgba(211,160,173, 1)',
+                cursorWidth: 2,
+                barGap: 6,
+                cursorColor: 'black',
+                normalize: true,
+                barWidth: 6,
+                barRadius: 3,
+                height: 350,
+            });
 
-function progressBar() {
-  var audioDemo = document.getElementById("myaudio");
-  var elapsedTime = Math.round(audioDemo.currentTime);
-  if (canvas.getContext) {
-    var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-    ctx.fillStyle = "rgb(0,120,215)";
-    var fWidth = (elapsedTime / audioDemo.duration) * canvas.clientWidth;
-    if (fWidth > 0) {
-      ctx.fillRect(0, 0, fWidth, canvas.clientHeight);
-    }
-  }
-}
-function playAudio() {
-  try {
-    var audioDemo = document.getElementById("myaudio");
-    var btn = document.getElementById("play");
+            wavesurfer.on('loading', function (percents) {
+                document.getElementById('progress').value = percents;
+            });
 
-    var audioURL =
-      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+            wavesurfer.on('ready', function (percents) {
+                document.getElementById('progress').style.display = 'none';
+            });
 
-    if (audioURL !== currentFile) {
-      audioDemo.src = audioURL;
-      currentFile = audioURL;
-    }
-
-    if (audioDemo.paused) {
-      audioDemo.play();
-      btn.textContent = "Pause";
-    } else {
-      audioDemo.pause();
-      btn.textContent = "Play";
-    }
-  } catch (e) {
-    if (window.console && console.error("Error:" + e));
-  }
-}
-
-
-
-function initEvents() {
-  var canvas = document.getElementById("canvas");
-  var audioDemo = document.getElementById("myaudio");
-
-  audioDemo.addEventListener(
-    "playing",
-    function () {
-      document.getElementById("play").textContent = "Pause";
-    },
-    true
-  );
-
-  audioDemo.addEventListener(
-    "pause",
-    function () {
-      document.getElementById("play").textContent = "Play";
-    },
-    true
-  );
-  audioDemo.addEventListener("timeupdate", progressBar, true);
-  canvas.addEventListener(
-    "click",
-    function (e) {
-      var audioDemo = document.getElementById("myaudio");
-      var canvas = document.getElementById("canvas");
-
-      if (!e) {
-        e = window.event;
-      } 
-      try {
-        audioDemo.currentTime =
-          audioDemo.duration * (e.offsetX / canvas.clientWidth);
-      } catch (err) {
-        if (window.console && console.error("Error:" + err));
-      }
-    },
-    true
-  );
-}
-
-window.addEventListener("DOMContentLoaded", initEvents, false);
+            wavesurfer.load(document.querySelector('#song'), [
+                0.0218, 0.0183, 0.0165, 0.0198, 0.2137, 0.2888, 0.2313, 0.15, 0.2542, 0.2538, 0.2358, 0.1195, 0.1591, 0.2599, 0.2742, 0.1447, 0.2328, 0.1878, 0.1988, 0.1645, 0.1218, 0.2005, 0.2828, 0.2051, 0.1664, 0.1181, 0.1621, 0.2966, 0.189, 0.246, 0.2445, 0.1621, 0.1618, 0.189, 0.2354, 0.1561, 0.1638, 0.2799, 0.0923, 0.1659, 0.1675, 0.1268, 0.0984, 0.0997, 0.1248, 0.1495, 0.1431, 0.1236, 0.1755, 0.1183, 0.1349, 0.1018, 0.1109, 0.1833, 0.1813, 0.1422, 0.0961, 0.1191, 0.0791, 0.0631, 0.0315, 0.0157, 0.0166, 0.0108
+            ]);
