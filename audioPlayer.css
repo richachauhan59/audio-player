@@ -1,0 +1,19 @@
+* {
+    font-family: Segoe, sans-serif;
+  }
+  
+  #wrapper {
+    width: 650px;
+  }
+  div {
+    margin: 10px;
+  }
+  
+  button {
+    width: 110px;
+  }
+  
+  #canvas {
+    border-style: solid;
+    border-width: 1px;
+  }

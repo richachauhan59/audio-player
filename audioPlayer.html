@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Player</title>
+    <link rel="stylesheet" href="audioPlayer.css">
+</head>
+<body>
+    <div id="wrapper">
+        <h2>Audio player</h2>
+        <div>
+          <audio id="myaudio">
+          <!-- Display if HTML5 audio is not supported -->
+          HTML5 audio not supported
+        </audio>
+        </div>
+        <div>
+          <canvas id="canvas" width="450" height="20">
+          <!-- Display if canvas is not supported -->
+          Canvas is not supported
+        </canvas>
+        </div>
+        <div id="buttons">
+          <button id="play" onclick="playAudio();" disabled>
+          Play
+        </button>
+        </div>
+      </div>
+      <script type="text/javascript">
+        //Check for support and enable buttons
+                  if (window.HTMLAudioElement) {
+                      document.getElementById("play").disabled = false;
+                  }
+      </script>
+    <script src="audioPlayer.js"></script>
+</body>
+</html>
