@@ -1,8 +1,19 @@
 #wrapper {
     text-align: center;
-    padding: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-top: -200px;
+    
 }
 
 .controls{
     padding: 100px;
+}
+
+#myCanvas {
+    width:1600px;
+    height:350px;
+    position: relative;
+    top: 155px;
+    z-index: 99;
 }
