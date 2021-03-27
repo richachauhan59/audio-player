@@ -74,3 +74,19 @@ tags(350, 50, "one_six", "rgb(80,201,141)", 90, 70)
 tags(900, 150, "Rapport Building - Empathy", "rgb(48,92,194)", 260, 70)
 tags(1200, 50, "Polite", "rgb(152,109,106)", 80, 70)
 tags(1200, 160, "Rapport Build - Energy", "rgb(104,154,65)", 320, 70)
+
+
+
+
+var count=1;
+function setColor(btn, color){
+    var property = document.getElementById(btn);
+    if (count == 0){
+        property.style.borderColor = "#FFFFFF"
+        count=1;        
+    }
+    else{
+        property.style.borderColor = "#31BDF1"
+        count=0;
+    }
+}
